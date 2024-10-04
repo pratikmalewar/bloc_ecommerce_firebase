@@ -1,18 +1,17 @@
 import 'package:bloc_ecommerce_firebase/common/helper/navogator/app_navigator.dart';
 import 'package:bloc_ecommerce_firebase/common/widget/appbar/app_bar.dart';
 import 'package:bloc_ecommerce_firebase/common/widget/button/basic_app_button.dart';
-import 'package:bloc_ecommerce_firebase/presentation/auth/pages/enter_password.dart';
-import 'package:bloc_ecommerce_firebase/presentation/auth/pages/signup.dart';
+import 'package:bloc_ecommerce_firebase/presentation/auth/pages/forgot_password.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+class EnterPasswordPage extends StatelessWidget {
+  const EnterPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BasicAppbar(hideBack: true,),
+      appBar: BasicAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
         child: Column(
@@ -20,11 +19,11 @@ class SignInPage extends StatelessWidget {
           children: [
             _signinText(context),
             const SizedBox(height: 20),
-            _emailField(context),
+            _passwordField(context),
             const SizedBox(height: 20),
             _continueButton(context),
             const SizedBox(height: 20),
-            _createAccount(context),
+            _forgotAccount(context),
           ],
         ),
       ),
@@ -38,32 +37,31 @@ class SignInPage extends StatelessWidget {
     );
   }
 
-  Widget _emailField(BuildContext context) {
+  Widget _passwordField(BuildContext context) {
     return const TextField(
       decoration: InputDecoration(
-        hintText: 'Enter Email',
+        hintText: 'Enter Password',
       ),
     );
   }
 
   Widget _continueButton(BuildContext context) {
     return BasicAppButton(
-      onPressed: () {
-        AppNavigator.push(context, const EnterPasswordPage());
-      },
+      onPressed: () {},
       title: "Continue",
     );
   }
 
-  Widget _createAccount(BuildContext context) {
+  Widget _forgotAccount(BuildContext context) {
     return RichText(
         text: TextSpan(children: [
-      const TextSpan(text: "Don't you have an account? "),
+      const TextSpan(text: "Forgot password? "),
       TextSpan(
-        text: "Create one",
-        recognizer: TapGestureRecognizer()..onTap = () {
-          AppNavigator.push(context, const SignupPage());
-        },
+        text: "Reset",
+        recognizer: TapGestureRecognizer()
+          ..onTap = () {
+            AppNavigator.push(context, ForgotPasswordPage());
+          },
         style: const TextStyle(fontWeight: FontWeight.bold),
       )
     ]));
